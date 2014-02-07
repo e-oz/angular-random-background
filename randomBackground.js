@@ -60,7 +60,7 @@ angular.module('jm-random-background', [])
                    if (angular.isUndefined(attrs.imgNumFrom)) {
                      attrs.imgNumFrom = attrs.imgNumFrom || 1;
                    }
-                   if (angular.isUndefined(attrs.attrs.imgNumTo)) {
+                   if (angular.isUndefined(attrs.imgNumTo)) {
                      attrs.imgNumTo = attrs.imgNumTo || 515;
                    }
                    if (angular.isUndefined(attrs.imgNumPad)) {
