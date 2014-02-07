@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('jm-random-background')
+angular.module('jm-random-background', [])
   .directive('jmRandomBackground', function($timeout, $compile) {
                var pad = function(num, field) {
                  var n = '' + num;
