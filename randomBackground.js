@@ -15,7 +15,7 @@ angular.module('jm-random-background', [])
                }
 
                var updateBackground = function(element, scope) {
-                 var id = randomFromInterval(scope.imgNumFrom, scope.imgNumTo);
+                 var id = randomFromInterval(parseInt(scope.imgNumFrom), parseInt(scope.imgNumTo));
                  if (scope.imgNumPad) {
                    id = pad(id, scope.imgNumPad);
                  }
@@ -52,20 +52,27 @@ angular.module('jm-random-background', [])
                    imgExt:     '@'
                  },
                  link:     function link(scope, element, attrs) {
-                   updateBackground(element, scope);
-                 },
-                 compile:  function(e, attrs) {
-                   attrs.imgUrl = attrs.imgUrl || '//s3-eu-west-1.amazonaws.com/btkmedia/media/backgrounds/image';
-                   attrs.imgExt = attrs.imgExt || '.jpg';
+                   scope.imgUrl = attrs.imgUrl || '//s3-eu-west-1.amazonaws.com/btkmedia/media/backgrounds/image';
+                   scope.imgExt = attrs.imgExt || '.jpg';
                    if (angular.isUndefined(attrs.imgNumFrom)) {
-                     attrs.imgNumFrom = attrs.imgNumFrom || 1;
+                     scope.imgNumFrom = '1';
+                   }
+                   else {
+                     scope.imgNumFrom = attrs.imgNumFrom;
                    }
                    if (angular.isUndefined(attrs.imgNumTo)) {
-                     attrs.imgNumTo = attrs.imgNumTo || 515;
+                     scope.imgNumTo = '515';
+                   }
+                   else {
+                     scope.imgNumTo = attrs.imgNumTo;
                    }
                    if (angular.isUndefined(attrs.imgNumPad)) {
-                     attrs.imgNumPad = '0000';
+                     scope.imgNumPad = '0000';
                    }
+                   else {
+                     scope.imgNumPad = attrs.imgNumPad;
+                   }
+                   updateBackground(element, scope);
                  }
                };
              });
