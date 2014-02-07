@@ -15,8 +15,11 @@ angular.module('jm-random-background')
                }
 
                var updateBackground = function(element, scope) {
-                 var id = pad(randomFromInterval(1, 515), '0000');
-                 var url = 'https://s3-eu-west-1.amazonaws.com/btkmedia/media/backgrounds/image' + id + '.jpg';
+                 var id = randomFromInterval(scope.imgNumFrom, scope.imgNumTo);
+                 if (scope.imgNumPad) {
+                   id = pad(id, scope.imgNumPad);
+                 }
+                 var url = scope.imgUrl + id + scope.imgExt;
                  var tmp_element = $compile('<img src="' + url + '" style="display: none;"/>')(scope);
                  element.prepend(tmp_element);
                  tmp_element.bind('load', function() {
@@ -45,13 +48,15 @@ angular.module('jm-random-background')
                    imgUrl:     '@',
                    imgNumFrom: '@',
                    imgNumTo:   '@',
-                   imgNumPad:  '@'
+                   imgNumPad:  '@',
+                   imgExt:     '@'
                  },
                  link:     function link(scope, element, attrs) {
                    updateBackground(element, scope);
                  },
                  compile:  function(e, attrs) {
                    attrs.imgUrl = attrs.imgUrl || '//s3-eu-west-1.amazonaws.com/btkmedia/media/backgrounds/image';
+                   attrs.imgExt = attrs.imgExt || '.jpg';
                    if (angular.isUndefined(attrs.imgNumFrom)) {
                      attrs.imgNumFrom = attrs.imgNumFrom || 1;
                    }
@@ -59,7 +64,7 @@ angular.module('jm-random-background')
                      attrs.imgNumTo = attrs.imgNumTo || 515;
                    }
                    if (angular.isUndefined(attrs.imgNumPad)) {
-                     attrs.imgNumPad = true;
+                     attrs.imgNumPad = '0000';
                    }
                  }
                };
