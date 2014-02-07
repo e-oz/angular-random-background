@@ -1,0 +1,24 @@
+{
+  "name": "angular-random-background",
+  "version": "0.0.1",
+  "authors": [
+    "Eugene OZ <normandiggs@gmail.com>"
+  ],
+  "description": "random backgrounds for html element (tested with body)",
+  "main": "randomBackground.js",
+  "keywords": [
+    "angular",
+    "random",
+    "background",
+    "image"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jamm/angular-random-background",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
