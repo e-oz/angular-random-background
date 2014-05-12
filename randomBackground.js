@@ -21,14 +21,15 @@ angular.module('jm-random-background', [])
                  }
                  var url = scope.imgUrl + id + scope.imgExt;
                  var tmp_element = $compile('<img src="' + url + '" style="display: none;"/>')(scope);
-                 element.prepend(tmp_element);
-                 tmp_element.bind('load', function() {
-                   element.css({
-                                 'background-image': 'url(' + url + ')',
+                 element.prepend(tmp_element).css({
                                  'background-size':       'cover',
                                  'background-position':   'center',
                                  'background-repeat':     'no-repeat',
                                  'background-attachment': 'fixed'
+                               });;
+                 tmp_element.bind('load', function() {
+                   element.css({
+                                 'background-image': 'url(' + url + ')'
                                });
 
                    tmp_element.remove();
